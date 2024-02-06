@@ -51,7 +51,8 @@ module Firebase
               Accept: "application/json; charset=utf-8",
               "Content-Type": "application/json; charset=utf-8",
               "User-Agent": USER_AGENT
-            }
+            },
+            bodies: true
           }
 
           @connection ||= Faraday::Connection.new(@uri, options) do |c|
@@ -59,6 +60,7 @@ module Firebase
             c.request :credentials, credentials: @credentials unless @credentials.nil?
             c.response :json
             c.response :raise_error
+            c.response bodies: true
             c.adapter(Faraday.default_adapter)
           end
         end
