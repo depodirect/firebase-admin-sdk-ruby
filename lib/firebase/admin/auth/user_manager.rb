@@ -58,7 +58,7 @@ module Firebase
             password: validate_password(password),
             emailVerified: to_boolean(email_verified),
             disabled: to_boolean(disabled),
-            customAttributes: validate_custom_claims(custom_claims)
+            customAttributes: parse_custom_claims(custom_claims)
           }.compact
 
           res = @client.post(with_path("accounts:update"), payload).body

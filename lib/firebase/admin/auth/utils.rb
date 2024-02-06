@@ -1,3 +1,5 @@
+require 'json'
+
 module Firebase
   module Admin
     module Auth
@@ -54,11 +56,11 @@ module Firebase
           !!val unless val.nil?
         end
 
-        def validate_custom_claims(custom_claims, required: false)
+        def parse_custom_claims(custom_claims, required: false)
           return nil if custom_claims.nil? && !required
 
           raise ArgumentError, "custom_claims must be a hash" unless custom_claims.is_a?(Hash)
-          custom_claims
+          custom_claims.to_json
         end
 
         module_function
