@@ -52,6 +52,10 @@ module Firebase
           )
         end
 
+        def set_custom_user_claims(uid, custom_claims)
+          @user_manager.update_user(uid: uid, custom_claims: custom_claims)
+        end
+
         # Gets the user corresponding to the specified user id.
         #
         # @param [String] uid
